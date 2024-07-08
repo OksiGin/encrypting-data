@@ -1,0 +1,19 @@
+os: linux
+language: java
+services:
+  - docker
+cache: bundler
+dist: focal
+install: skip
+jobs:
+  include:
+    - name: failing
+      script: true
+after_success:
+  - echo passed > test.txt
+  - echo $TRAVIS_TEST_RESULT >> test.txt
+  - cat test.txt
+after_failure:
+  - echo failed > test.txt
+  - echo $TRAVIS_TEST_RESULT >> test.txt
+  - cat test.txt
