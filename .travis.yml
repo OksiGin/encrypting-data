@@ -17,3 +17,6 @@ after_failure:
   - echo failed > test.txt
   - echo $TRAVIS_TEST_RESULT >> test.txt
   - cat test.txt
+env:
+  global:
+    - unsecure=abc123
