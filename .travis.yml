@@ -1,5 +1,4 @@
 os: linux
-
 language: java
 services:
   - docker
@@ -10,13 +9,11 @@ jobs:
   include:
     - name: failing
       script: true
-
 after_success:
   - echo passed > test.txt
   - echo $MY_SECRET_VAR
   - echo $MY_SECRET_VAR >> test.txt
   - cat test.txt
-
 after_failure:
   - echo failed > test.txt
   - echo $MY_SECRET_VAR
@@ -25,4 +22,6 @@ after_failure:
 env:
   global:
     - secure: d9WoQQJBFHS9itBeVoZIBLA+Ck7efAGsLWs6txs4qD0dCZSwl3q2Ohg2FiBgCip0+TAA2iZxwcK3UM+B4YGNfX2Dg7pgsCpV6xs66RXfHy+xiDD8ysw3p6oWXQsJumEO57bf3rctbr34AaQgogDdnaJhyGY6IkQkava1a5kyJc/NkAoUmhX8wy4RybFEB2r3qf7WMspT1vbp5sruYEsYNS7JKwPRj7xfUezaTyyNSfzieo8D9aifWABkmVwwVV+H6TMC8v6jJwpGAjFLm1N/yI8RNp+ZYgbpCgRmmTPN5fkGuyUO3h9GueJ6PpNgLqkEFtb47b3rcOhXi4AaefoW5Tedd/cQ2SKG03oxVEvKG5Yzd3xRfLu5phi6BeD85aa1UZzbr8dhvDXKilBCllxy2vzb0XKo6BVRNi9+4g3J7dBGE6oGQ8P4Ls3Z7kN+xObsD5YrP7ymNlt0ahaL8suKPyh5FKd+XR68Rl2vgDSxUrruWuXVu3rIvEDrpKdpEm+nVVxYIhluw+zJrn+3o3R2lOg4KbPpj/ytMFTFg4NLzxQhxyBz4QgpleX1YGewMSyXmOls3XXVl0QmTdxuvRN17nyjS6UdqBcEARsYuj16Nfzf3Tz38c1EwAWdRxgTk5GspvpWO2CYfwv9V/Cbkcl5AjcX3Th6fnyZyLdLAZJh3O8=
-    
+before_install:
+  - openssl aes-256-cbc -K $encrypted_355e94ba1091_key -iv $encrypted_355e94ba1091_iv
+    -in super_secret.txt.enc -out super_secret.txt -d
