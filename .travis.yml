@@ -12,10 +12,14 @@ jobs:
 after_success:
   - echo passed > test.txt
   - echo $TRAVIS_TEST_RESULT >> test.txt
+  - echo $MY_SECRET_VAR
+  - echo $MY_SECRET_VAR >> test.txt
   - cat test.txt
 after_failure:
   - echo failed > test.txt
   - echo $TRAVIS_TEST_RESULT >> test.txt
+  - echo $MY_SECRET_VAR
+  - echo $MY_SECRET_VAR >> test.txt
   - cat test.txt
 env:
   global:
